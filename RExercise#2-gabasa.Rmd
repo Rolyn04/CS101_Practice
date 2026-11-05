@@ -1,0 +1,207 @@
+---
+title: 'Exercise #2'
+author: "Rolyn Mae Gabasa"
+date: "2026-09-30"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+### PART A - Arithmetic Operations
+```{r}
+
+# TODO: Store 17 in a variable called a, and 5 in a variable called b
+# Then print the results of: a + b, a - b, a * b, a / b
+a <- 17
+b <- 5
+
+# Print the results of arithmetic operations
+print(a + b)
+print(a - b)
+print(a * b)
+print(a / b)
+
+```
+```{r}
+# TODO: Using the same a and b, compute and print a %% b and a %/% b
+# a %% b = remainder of a / b
+# a %/% b = whole-number (integer) division
+print(a %% b)
+print(a %/% b)
+
+```
+```{r}
+# TODO: Print 2 raised to the power of 10 using the ^ operator
+print(2 ^ 10)
+```
+Question #1: Run 17 / 5, 17 %% 5, and 17 %/% 5 side by side. In your own words, explain how these three results relate to each other mathematically.
+Answer: The results of `17 / 5`, `17 %% 5`, and `17 %/% 5` are 3.4, 2, and 3, respectively. Regular division (`/`) gives the exact decimal result, `%%` gives the remainder, and `%/%` gives the whole-number quotient. Mathematically, this means that 17 can be written as `(5 × 3) + 2`, where 3 is the quotient and 2 is the remainder.
+
+Question #2: Predict the output of 10 %% 3 and 10 %/% 3 before running the code. Were you correct? If not, explain what you misunderstood.
+Answer: Before running the code, I predicted that `10 %% 3` would give 1 and `10 %/% 3` would give 3, and I was correct. I understood that `%%` gives the remainder after division, while `%/%` gives the whole-number quotient. Therefore, since 10 divided by 3 is 3 with a remainder of 1, the results are 1 and 3.
+
+### PART B - Basic Data Types: typeof(), class(), and mode()
+```{r}
+
+x <- 42
+y <- 42L        # the L suffix forces an integer
+z <- "42"
+w <- TRUE
+v <- 3 + 2i     # complex number
+
+# TODO: Use typeof() to check the type of each of x, y, z, w, v
+print(typeof(x))
+print(typeof(y))
+print(typeof(z))
+print(typeof(w))
+print(typeof(v))
+```
+```{r}
+# TODO: Use class() to check the class of each of x, y, z, w, v
+print(class(x))
+print(class(y))
+print(class(z))
+print(class(w))
+print(class(v))
+
+```
+```{r}
+# TODO: Use mode() to check the class of each of x, y, z, w, v
+print(mode(x))
+print(mode(y))
+print(mode(z))
+print(mode(w))
+print(mode(v))
+
+```
+Question #3): x <- 42 and y <- 42L look almost identical, but typeof(x) and typeof(y) give different answers. Explain the difference in your own words.
+Answer: In R, `x <- 42` stores the value as a double by default, whereas `y <- 42L` stores it as an integer. The letter `L` indicates that the number should be explicitly treated as an integer.
+
+Question #4:  Is typeof() ever different from class() and from mode() for the same object? Look at your results above and explain any case where this happens (or, if you did not see one, explain what you would expect for a matrix or factor).
+Answer: Yes. In R, `typeof()`, `class()`, and `mode()` can produce different outputs because each describes an object in a different way. For instance, `typeof()` identifies an integer as `"integer"`, while `mode()` may return `"numeric"`. The `class()` function, on the other hand, identifies the object's class, such as a matrix or factor.
+
+### PART C - Type Conversion (20 min)
+```{r}
+num_string <-"123"
+# TODO: Convert num_string to a numeric value using as.numeric()
+# Then check its type with typeof(), class(), and mode()
+num_string <- "123"
+num_value <- as.numeric(num_string)
+
+typeof(num_value) # Returns: "double"
+class(num_value)  # Returns: "numeric"
+mode(num_value)   # Returns: "numeric"
+```
+```{r}
+# TODO: Convert the number 0 and the number 1 to logical using as.logical()
+# What do you get?
+as.logical(0) # Returns: FALSE
+as.logical(1) # Returns: TRUE
+```
+```{r}
+bad_string <- "hello123"
+# TODO: Try converting bad_string to numeric using as.numeric()
+# Run this chunk and observe the warning message and the result
+bad_string <- "hello123"
+as.numeric(bad_string)
+```
+Question #5: When you ran the conversion-fail chunk, R produced NA and a warning instead of stopping with an error.
+
+Why do you think R is designed to give a warning here rather than crashing the whole script?
+
+Answer: R gives a warning instead of stopping the entire script because it is designed to handle conversion problems gracefully. When a value cannot be converted to the requested data type, R returns `NA` to indicate a missing or invalid value and issues a warning to inform the user. This allows the rest of the code to continue running while making the conversion problem noticeable.
+
+What are the risks of this behavior if you don’t read your warnings?
+
+Amswer: If you ignore warnings, you might overlook errors in your data or calculations. R may convert values in unexpected ways, leading to incorrect results and misleading conclusions. For example, a failed conversion might produce `NA`, or a non-zero number might become `TRUE`, causing logical tests to behave differently than expected. This is why it is important to read warnings and check your data carefully.
+
+Question #6: as.logical(0) and as.logical(1) convert to FALSE and TRUE.
+
+What do you think as.logical(2) and as.logical(-1)` will produce?
+
+Answer: In R, `as.logical(2)` and `as.logical(-1)` will both produce `TRUE` because any non-zero numeric value is converted to `TRUE`, while `0` is converted to `FALSE`.
+
+### PART D - Strings, paste(), and paste0()
+```{r}
+first_name <- "Juan"
+last_name <- "Dela Cruz"
+
+# TODO: Print first_name and last_name using print() and/or cat()
+first_name <- "Juan"
+last_name <- "Dela Cruz"
+
+print(first_name)
+print(last_name)
+
+cat(first_name, last_name)
+```
+```{r}
+# TODO: Use paste() to combine first_name and last_name into a full name
+full_name_paste <- paste(first_name, last_name)
+# Result: "Juan Dela Cruz"
+# TODO: Use paste0() to do the same, and compare the two results
+full_name_paste0 <- paste0(first_name, last_name)
+# Result: "JuanDela Cruz"
+# Print and compare the two results
+print(full_name_paste)   
+print(full_name_paste0)
+```
+
+```{r}
+# TODO: Use paste() with the argument sep = "-" to join first_name and
+# last_name with a dash instead of a space
+paste(first_name, last_name, sep = "-")
+# Result: "Juan-Dela Cruz"
+```
+
+```{r}
+age <- 21
+# TODO: Use paste0() to build the sentence:
+# "Juan Dela Cruz is 21 years old." by combining full_name, age, and text
+full_name <- paste(first_name, last_name) # "Juan Dela Cruz"
+age <- 21
+
+paste0(full_name, " is ", age, " years old.")
+# Result: "Juan Dela Cruz is 21 years old."
+```
+
+Question #7: paste() and paste0() produced different results for the same two strings. Explain exactly why, referencing what each function does by default.
+
+Answer: The main difference between `paste()` and `paste0()` is how they separate combined strings. By default, `paste()` adds a space between strings, making it useful for joining a first and last name. On the other hand, `paste0()` joins strings without adding any spaces, so you must include a space manually if needed.
+
+Question #8: In the strings-numbers chunk, you combined a character string with a numeric variable (age) using paste0() without first converting age to a string.
+
+Did this cause an error? Explain what paste0() does internally to make this work, and how it relates to the type conversions you practiced in Part C.
+
+Answer: No, it did not cause an error because `paste0()` automatically converts numeric values into character strings before combining them. For example, if `age` is `20`, `paste0("Age: ", age)` produces `"Age: 20"`. This relates to the type conversions in Part C because R can automatically convert values from one data type to another when needed. In this case, the numeric value is converted to a character string, allowing it to be combined with text.
+
+### PART E — Critical Thinking Challenge
+```{r}
+# TODO: Predict, then test: what is the result of "5" + 5 in R?
+# Run it and read the error message carefully.
+#"5" + 5 
+```
+```{r}
+# TODO: Now fix the code above so that "5" + 5 correctly evaluates to 10
+# using an appropriate conversion function.
+as.numeric("5") + 5
+# Result: 10
+```
+Question #9: Some programming languages automatically convert "5" + 5 into 10 without an error. R does not.
+
+Based on what you’ve learned about R’s data types in this lab, why do you think R requires an explicit conversion instead of guessing what the programmer meant?
+
+Answer: R requires explicit conversion to prevent unexpected results and make sure operations use the correct data types. This helps programmers identify errors early and maintain accuracy when working with data. By requiring conversion, R avoids guessing the programmer’s intentions and encourages clearer, more reliable code.
+
+Question #10: Suppose a classmate writes a script that reads a column of “numbers” from a text file. The column looks numeric, but when they try sum() on it, R throws an error. Based on everything in this lab (types, typeof()/class()/mode(), conversion, warnings), write a short paragraph explaining what likely went wrong and the steps you’d take to diagnose and fix it.
+
+Answer: The column was likely read as character data instead of numeric values, which caused `sum()` to produce an error. I would use `typeof()`, `class()`, and `mode()` to check the column’s data type. If it is stored as character, I would use `as.numeric()` to convert it into numbers and carefully check for warnings or `NA` values that may indicate invalid entries. After cleaning the data and confirming the conversion was successful, I would run `sum()` again to get the correct result.
+
+
+
+
+
+
+
+
