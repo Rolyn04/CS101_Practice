@@ -561,6 +561,29 @@ students_all &lt;- cbind(students_all, quiz = quiz)
 
 class(students_all)</code></pre>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<pre class="r"><code>print (students_all)</code></pre>
+<pre><code>##    id  name sex section midterm final attendance average passed      standing
+## 1   1 Alice   F       A      78    82         95    80.0   TRUE          Good
+## 2   2 Bruno   M       B      85    79         88    82.0   TRUE          Good
+## 3   3  Chen   M       A      92    96        100    94.0   TRUE        Honors
+## 4   4  Dana   F       C      67    71         72    69.0  FALSE Needs Support
+## 5   5  Elif   F       B      74    80         90    77.0   TRUE          Good
+## 6   6 Farid   M       C      88    91         85    89.5   TRUE          Good
+## 7   7 Grace   F       A      95    93         98    94.0   TRUE        Honors
+## 8   8  Hiro   M       B      59    65         60    62.0  FALSE Needs Support
+## 9   9  Ines   F       C      81    84         92    82.5   TRUE          Good
+## 10 10 Jamal   M       A      70    68         50    69.0  FALSE Needs Support
+##    quiz
+## 1     8
+## 2     7
+## 3    10
+## 4     6
+## 5     7
+## 6     9
+## 7    10
+## 8     5
+## 9     8
+## 10    6</code></pre>
 <p>C3 Create the matrix m &lt;- cbind(midterm = students_all<span class="math inline">\(midterm, final = students_all\)</span>final) and
 use rbind() to append a final row containing the column means, labeled
 “mean”.</p>
